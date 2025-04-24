@@ -108,7 +108,23 @@ const options = {
 };
 
 const swaggerSpec = swaggerJSDoc(options)
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', (req, res) => {
+  res.send(
+    swaggerUi.generateHTML(swaggerSpec, {
+      explorer: true,
+      swaggerOptions: {
+        url: '/api-docs/swagger.json',
+      },
+    })
+  );
+});
+app.get('/api-docs/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // Rotas
 app.use("/api/v1/professores", professorsRoutes)
