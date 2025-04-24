@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import serverless from 'serverless-http'
 
 import professorsRoutes from "./routes/professores.routes.js"
 import instituicoesRoutes from "./routes/instituicoes.routes.js"
@@ -115,11 +116,9 @@ app.use("/api/v1/instituicoes", instituicoesRoutes)
 app.use("/api/v1/turmas", turmasRoutes)
 app.use("/api/v1/alunos", alunosRoutes)
 
-app.get('/', (req, res) => {
-  res.send('API funcionando com import/export!');
-});
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Servidor rodando na porta ${PORT}`);
+// });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+export const handler = serverless(app)
