@@ -116,9 +116,13 @@ app.use("/api/v1/instituicoes", instituicoesRoutes)
 app.use("/api/v1/turmas", turmasRoutes)
 app.use("/api/v1/alunos", alunosRoutes)
 
+app.get('/', (req, res) => {
+  res.send('API funcionando com import/export!');
+})
+
 // const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {
 //   console.log(`Servidor rodando na porta ${PORT}`);
 // });
 
-export const handler = serverless(app)
+export default app
