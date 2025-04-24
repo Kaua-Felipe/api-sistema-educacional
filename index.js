@@ -2,7 +2,6 @@ import express from 'express'
 import dotenv from 'dotenv'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
-import serverless from 'serverless-http'
 
 import professorsRoutes from "./routes/professores.routes.js"
 import instituicoesRoutes from "./routes/instituicoes.routes.js"
@@ -24,7 +23,7 @@ const options = {
     },
     servers: [
       {
-        url: `https://api-sistema-educacional.vercel.app/api`, 
+        url: 'https://api-sistema-educacional.vercel.app/api', 
       },
     ],
     components: {
@@ -136,9 +135,9 @@ app.get('/', (req, res) => {
   res.send('API funcionando com import/export!');
 })
 
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Servidor rodando na porta ${PORT}`);
-// });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
 
 export default app
