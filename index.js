@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 
+import serverless from 'serverless-http';
+
 import professorsRoutes from "./routes/professores.routes.js"
 import instituicoesRoutes from "./routes/instituicoes.routes.js"
 import turmasRoutes from "./routes/turmas.routes.js"
@@ -142,4 +144,4 @@ app.get('/', (req, res) => {
   })
 }*/
 
-export default app
+export const handler = serverless(app)
