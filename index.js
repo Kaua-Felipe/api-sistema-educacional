@@ -103,7 +103,8 @@ const options = {
     './routes/instituicoes.routes.js', 
     './routes/turmas.routes.js', 
     './routes/alunos.routes.js', 
-    './app.js'
+    './app.js', 
+    './routes/database.routes.js', 
   ], 
 };
 
