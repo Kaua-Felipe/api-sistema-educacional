@@ -10,7 +10,8 @@ const pool = mariadb.createPool({
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
   connectionLimit: 5, 
-  bigIntAsNumber: true
+  bigIntAsNumber: true, 
+  multipleStatements: true
 });
 
 export default pool;

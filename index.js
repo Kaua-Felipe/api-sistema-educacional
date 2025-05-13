@@ -7,6 +7,7 @@ import professorsRoutes from "./routes/professores.routes.js"
 import instituicoesRoutes from "./routes/instituicoes.routes.js"
 import turmasRoutes from "./routes/turmas.routes.js"
 import alunosRoutes from "./routes/alunos.routes.js"
+import databaseRoutes from "./routes/database.routes.js"
 
 dotenv.config();
 
@@ -114,6 +115,7 @@ app.use("/api/v1/professores", professorsRoutes)
 app.use("/api/v1/instituicoes", instituicoesRoutes)
 app.use("/api/v1/turmas", turmasRoutes)
 app.use("/api/v1/alunos", alunosRoutes)
+app.use("/api/v1/createdb", databaseRoutes)
 
 app.get('/', (req, res) => {
   res.send('API funcionando com import/export!');
