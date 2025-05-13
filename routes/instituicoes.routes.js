@@ -3,6 +3,82 @@ import pool from "../db/db.js"
 
 const router = Router()
 
+/**
+ * @openapi
+ * /api/v1/instituicoes:
+ *   get:
+ *     summary: Lista todas as instituições
+ *     description: Retorna um array de todas as instituições cadastradas no sistema onde o professor da aula.
+ *     responses:
+ *       200:
+ *         description: Lista de instituições retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Instituicao'
+ * 
+ *   post:
+ *     summary: Cria uma nova instituição
+ *     description: Adiciona uma nova instituição ao sistema onde o professor da aula.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Instituicao'
+ *     responses:
+ *       201:
+ *         description: Instituição criada com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *
+ * /api/v1/instituicoes/{id}:
+ *   get:
+ *     summary: Retorna uma instituição pelo ID
+ *     description: Retorna os dados de uma instituição específica com base no ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Dados da instituição retornados com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Instituicao'
+ *       404:
+ *         description: Instituição não encontrado
+ * 
+ *   put:
+ *     summary: Atualiza os dados de uma instituição
+ *     description: Atualiza completamente os dados de uma instituição existente.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Instituicao'
+ *     responses:
+ *       200:
+ *         description: Instituição atualizada com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       404:
+ *         description: Instituição não encontrado
+ * 
+ */
+
 router.get("/", async (req, res) => {
     try {
         const conn = await pool.getConnection()

@@ -3,6 +3,82 @@ import pool from "../db/db.js"
 
 const router = Router()
 
+/**
+ * @openapi
+ * /api/v1/turmas:
+ *   get:
+ *     summary: Lista todas as turmas
+ *     description: Retorna um array de todas as turmas cadastradas no sistema onde o professor da aula.
+ *     responses:
+ *       200:
+ *         description: Lista de turmas retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Turma'
+ * 
+ *   post:
+ *     summary: Cria uma nova turma
+ *     description: Adiciona uma nova turma ao sistema onde o professor da aula.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Turma'
+ *     responses:
+ *       201:
+ *         description: Turma criada com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *
+ * /api/v1/turmas/{id}:
+ *   get:
+ *     summary: Retorna uma turma pelo ID
+ *     description: Retorna os dados de uma turma específica com base no ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Dados da turma retornados com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Turma'
+ *       404:
+ *         description: Turma não encontrado
+ * 
+ *   put:
+ *     summary: Atualiza os dados de uma turma
+ *     description: Atualiza completamente os dados de uma turma existente.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Turma'
+ *     responses:
+ *       200:
+ *         description: Turma atualizada com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       404:
+ *         description: Turma não encontrado
+ * 
+ */
+
 router.get("/", async (req, res) => {
     try {
         const conn = await pool.getConnection()

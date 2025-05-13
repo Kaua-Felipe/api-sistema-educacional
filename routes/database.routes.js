@@ -3,6 +3,23 @@ import pool from "../db/db.js"
 
 const router = Router()
 
+/**
+ * @openapi
+ * /api/v1/createdb:
+ *   get:
+ *     summary: Cria o banco de dados caso não exista
+ *     description: Retorna se o banco de dados foi criado ou se já existia.
+ *     responses:
+ *       201:
+ *         description: Tabelas do banco criada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/DataBase'
+ */
+
 router.get("/", async (req, res) => {
     try {
         const conn = await pool.getConnection()
@@ -83,7 +100,7 @@ router.get("/", async (req, res) => {
         conn.release()
         res.status(201).json({ message: "Banco de dados criado com sucesso." })
     } catch (err) {
-        res.status(500).json({ error: "Banco de dados já está criado." })
+        res.status(500).json({ warning: "Banco de dados já está criado." })
     }
 });
 

@@ -53,7 +53,7 @@ const options = {
             },
           },
         }, 
-        Instituição: {
+        Instituicao: {
           type: 'object', 
           properties: {
             id: {
@@ -85,6 +85,31 @@ const options = {
             },
           },
         }, 
+        Turma: {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'integer',
+              format: 'int64',
+              description: 'ID da turma.',
+              readOnly: true,
+            },
+            name: {
+              type: 'string',
+              description: 'Nome da turma.',
+            },
+            school_year: {
+              type: 'integer',
+              format: 'int64',
+              description: 'Ano letivo que o professor leciona a matéria.',
+            },
+            id_institution: {
+              type: 'integer',
+              format: 'int64',
+              description: 'ID relacionado a uma instituição.',
+            },
+          },
+        },
         Aluno: {
           type: 'object',
           properties: {
@@ -106,6 +131,20 @@ const options = {
               type: 'tinyint(1)',
               description: 'Status se o aluno foi aprovado na matéria ou não.',
             },
+            id_class: {
+              type: 'integer',
+              format: 'int64',
+              description: 'ID relacionado a turma que o aluno está cursando.',
+            },
+          },
+        },
+        DataBase: {
+          type: 'object',
+          properties: {
+            message: {
+              type: 'string',
+              description: 'Mensagem de que o banco foi criado.',
+            },
           },
         },
         
@@ -126,8 +165,8 @@ const options = {
     './routes/instituicoes.routes.js', 
     './routes/turmas.routes.js', 
     './routes/alunos.routes.js', 
-    './app.js', 
     './routes/database.routes.js', 
+    './app.js', 
   ], 
 };
 
