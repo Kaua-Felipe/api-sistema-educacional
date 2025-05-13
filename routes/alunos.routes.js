@@ -3,6 +3,81 @@ import pool from "../db/db.js"
 
 const router = Router()
 
+/**
+ * @openapi
+ * /api/v1/alunos:
+ *   get:
+ *     summary: Lista todos os alunos
+ *     description: Retorna um array de todos os alunos cadastrados no sistema.
+ *     responses:
+ *       200:
+ *         description: Lista de alunos retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Alunos'
+ * 
+ *   post:
+ *     summary: Cria um novo aluno
+ *     description: Adiciona um novo aluno ao sistema.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Aluno'
+ *     responses:
+ *       201:
+ *         description: Aluno criado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *
+ * /api/v1/alunos/{id}:
+ *   get:
+ *     summary: Retorna um aluno pelo ID
+ *     description: Retorna os dados de um aluno específico com base no ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Dados do aluno retornados com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Aluno'
+ *       404:
+ *         description: Aluno não encontrado
+ * 
+ *   put:
+ *     summary: Atualiza os dados de um aluno
+ *     description: Atualiza completamente os dados de um aluno existente.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Aluno'
+ *     responses:
+ *       200:
+ *         description: Aluno atualizado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       404:
+ *         description: Aluno não encontrado
+ * 
+ */
 router.get("/", async (req, res) => {
     try {
         const conn = await pool.getConnection()

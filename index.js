@@ -24,7 +24,7 @@ const options = {
     },
     servers: [
       {
-        url: `https://api-sistema-educacional.vercel.app/`, 
+        url: `http://localhost:3000`, 
       },
     ],
     components: {
@@ -85,6 +85,29 @@ const options = {
             },
           },
         }, 
+        Aluno: {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'integer',
+              format: 'int64',
+              description: 'ID do aluno.',
+              readOnly: true,
+            },
+            name: {
+              type: 'string',
+              description: 'Nome do aluno.',
+            },
+            birth_date: {
+              type: 'date',
+              description: 'Data de nascimento do aluno.',
+            },
+            approved: {
+              type: 'tinyint(1)',
+              description: 'Status se o aluno foi aprovado na matéria ou não.',
+            },
+          },
+        },
         
         Erro: {
           type: 'object',
